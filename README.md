@@ -1,4 +1,4 @@
-# SIMCFT
+# SIMCFT Training Script
 
 ## Overview
 This script is designed for training the SIMCFT model on trajectory datasets. SIMCFT is intended for metric learning tasks involving trajectory data, capable of learning embeddings that can be used for trajectory similarity assessment, clustering, or retrieval.

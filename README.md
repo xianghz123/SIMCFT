@@ -32,17 +32,3 @@ Shared modules:
 Install:
 ```bash
 pip install torch numpy pandas gensim
-
-
-## Data
-- Prepare the split CSV files in data/porto/.
-
-## Run
-- python generate_grid2idx.py
-- python build_cell_graph.py
-- python train_node2vec.py
-- python generate_simcft_dataset.py
-- python train_simcft.py
-
-## Note
-Default paths are defined in `parameters.py`.

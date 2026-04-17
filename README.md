@@ -30,8 +30,8 @@ Shared modules:
 - gensim
 
 Install:
-```bash
-pip install torch numpy pandas gensim ```
+bash
+pip install torch numpy pandas gensim
 
 ## Data
 - Prepare the split CSV files in data/porto/.
@@ -45,9 +45,3 @@ pip install torch numpy pandas gensim ```
 
 ## Note
 Default paths are defined in `parameters.py`.
-
-
-
-
-
-

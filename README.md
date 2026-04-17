@@ -1,45 +1,48 @@
-# SIMCFT Training Script
+# SIMCFT Training Pipeline
 
 ## Overview
-This script is designed for training the SIMCFT model on trajectory datasets. SIMCFT is intended for metric learning tasks involving trajectory data, capable of learning embeddings that can be used for trajectory similarity assessment, clustering, or retrieval.
+This project provides a simple training pipeline for SIMCFT on trajectory data.
+
+SIMCFT learns trajectory embeddings with two channels:
+- a **status channel** for motion dynamics
+- a **spatial-context channel** for grid-based spatial information
+
+The learned embeddings can be used for trajectory similarity and retrieval.
+
+## Files
+- `parameters.py`: configuration
+- `generate_grid2idx.py`: build grid vocabulary
+- `build_cell_graph.py`: build cell transition graph
+- `train_node2vec.py`: train cell embeddings
+- `generate_simcft_dataset.py`: generate JSON datasets
+- `train_simcft.py`: train the SIMCFT model
+
+Shared modules:
+- `traj2grid.py`
+- `simcft_dataset.py`
+- `simcft_model.py`
 
 ## Dependencies
 - Python 3.x
 - PyTorch
 - NumPy
-- argparse
-- Other dependencies as required by the utility scripts (utils.py, etc.).
+- pandas
+- gensim
 
-## Installation
-1. Ensure you have Python 3.x installed on your system. It’s recommended to use a virtual environment:
+Install:
+```bash
+pip install torch numpy pandas gensim
 
- ```sh
-python3 -m venv SIMCFT-env
-source SIMCFT-env/bin/activate
-Install the required Python packages:
- ```
+## Data
+- Prepare the split CSV files in data/porto/.
 
-2. Install the required Python packages:
- ```sh
-pip install torch numpy argparse
-```
+## Run
+- python generate_grid2idx.py
+- python build_cell_graph.py
+- python train_node2vec.py
+- python generate_simcft_dataset.py
+- python train_simcft.py
 
-## Preparing Your Dataset
-You need to prepare your trajectory dataset in JSON format with the following fields:
-- `trajs`: List of trajectory indices.
-- `origin_trajs`: List of original trajectories with (lon, lat) coordinates.
+## Note
+Default paths are defined in `parameters.py`.
 
-Make sure you have separate files for training, validation, and testing datasets, for example:
-
-
-
-## Running the Script
-To train the SIMCFT model, prepare your dataset in the specified format and adjust parameters according to your dataset characteristics.
-
-1. **Prepare your trajectory dataset** in the required format, ensuring you have training, validation, and test sets ready.
-2. **Adjust parameters** in the `parameters.py` script or prepare to override them via command-line arguments when running the training script.
-
-### Example Command
-Run the script with the desired parameters:
-```sh
-python train.py --batch_size 32 --epoch_num 100 --learning_rate 0.001 --device cuda

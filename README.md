@@ -30,7 +30,7 @@ Shared modules:
 - gensim
 
 Install:
--bash
+- bash
 `pip install torch numpy pandas gensim`
 
 ## Data
